@@ -166,7 +166,7 @@ lv_obj_t * lv_tabview_create(lv_obj_t * par, const lv_obj_t * copy)
         lv_btnmatrix_set_map(ext->btns, ext->tab_name_ptr);
 
         lv_style_list_copy(lv_obj_get_style_list(tabview, LV_TABVIEW_PART_BG_SCROLLABLE), lv_obj_get_style_list(copy,
-                                                                                                               LV_TABVIEW_PART_BG_SCROLLABLE));
+                                                                                                                LV_TABVIEW_PART_BG_SCROLLABLE));
         lv_style_list_copy(lv_obj_get_style_list(tabview, LV_TABVIEW_PART_TAB_BG), lv_obj_get_style_list(copy,
                                                                                                          LV_TABVIEW_PART_TAB_BG));
         lv_style_list_copy(lv_obj_get_style_list(tabview, LV_TABVIEW_PART_TAB_BTN), lv_obj_get_style_list(copy,
@@ -223,7 +223,7 @@ lv_obj_t * lv_tabview_add_tab(lv_obj_t * tabview, const char * name)
 
     /*Extend the button matrix map with the new name*/
     char * name_dm;
-    name_dm = lv_mem_alloc(strlen(name) + 1); /*+1 for the the closing '\0' */
+    name_dm = lv_mem_alloc(strlen(name) + 1); /*+1 for the closing '\0' */
     LV_ASSERT_MEM(name_dm);
     if(name_dm == NULL) return NULL;
     strcpy(name_dm, name);
@@ -616,7 +616,7 @@ static lv_res_t lv_tabview_signal(lv_obj_t * tabview, lv_signal_t sign, void * p
         else if(info->part == LV_TABVIEW_PART_TAB_BTN) info->result = lv_obj_get_state(ext->btns, LV_BTNMATRIX_PART_BTN);
         else if(info->part == LV_TABVIEW_PART_INDIC) info->result = lv_obj_get_state(ext->indic, LV_OBJ_PART_MAIN);
         else if(info->part == LV_TABVIEW_PART_BG_SCROLLABLE) info->result = lv_obj_get_state(ext->content,
-                                                                                                LV_PAGE_PART_SCROLLABLE);
+                                                                                                 LV_PAGE_PART_SCROLLABLE);
         return LV_RES_OK;
     }
 
@@ -747,15 +747,15 @@ static lv_res_t tabview_scrl_signal(lv_obj_t * tabview_scrl, lv_signal_t sign, v
         if(tab_page == NULL) return LV_RES_OK;
         lv_coord_t page_x1  = tab_page->coords.x1 - tabview->coords.x1 + x_predict;
         lv_coord_t page_x2  = page_x1 + lv_obj_get_width(tabview);
-        lv_coord_t treshold = lv_obj_get_width(tabview) / 2;
+        lv_coord_t threshold = lv_obj_get_width(tabview) / 2;
 
         lv_bidi_dir_t base_dir = lv_obj_get_base_dir(tabview);
         int16_t tab_cur = ext->tab_cur;
-        if(page_x1 > treshold) {
+        if(page_x1 > threshold) {
             if(base_dir != LV_BIDI_DIR_RTL) tab_cur--;
             else tab_cur ++;
         }
-        else if(page_x2 < treshold) {
+        else if(page_x2 < threshold) {
             if(base_dir != LV_BIDI_DIR_RTL) tab_cur++;
             else tab_cur --;
         }
@@ -809,7 +809,6 @@ static lv_style_list_t * lv_tabview_get_style(lv_obj_t * tabview, uint8_t part)
 
     return style_dsc_p;
 }
-
 
 /**
  * Called when a tab button is clicked
@@ -910,7 +909,6 @@ static void refr_indic_size(lv_obj_t * tabview)
     lv_obj_set_width(ext->indic, indic_w);
     lv_obj_set_height(ext->indic, indic_h);
 }
-
 
 static void refr_btns_size(lv_obj_t * tabview)
 {
